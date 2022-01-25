@@ -1,0 +1,29 @@
+#page-1 {
+    width: 100vw;
+    height: 50vh;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 6fr 6fr;
+    grid-template-rows: 100px;
+}
+
+.page-1-coffee {
+    display: grid;
+    grid-template-columns: 5fr 5fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.page-1-coffee-head {
+    grid-column: 1 / 5;
+}
+
+.page-1-coffee-attribute-weight {
+    /* grid-area: 2 / 1 / 2 / 1; */
+}
+
+
+
+
+
+#generate-random-number {
+}

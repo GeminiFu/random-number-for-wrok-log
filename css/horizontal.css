@@ -1,0 +1,4 @@
+.phone-horizontal {
+    flex-direction: row;
+    padding: 0 15vw;
+}
