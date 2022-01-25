@@ -25,25 +25,63 @@ const temperature = [[375, 12, 2], [65, 5, 2], [400, 7, 2], [76, 4, 2], [310, 5]
 
 
 
-renderWeightTemperature(latte);
-renderWeightTemperature(americano);
+const domById = catchDomById("page-1-date", "page-1-time", "latte", "americano", "generate-random-number"),
+    today = new Date;
 
+domById.generateRandomNumber.addEventListener("click", () => {
+    renderWeightTemperature(latte);
+
+    renderWeightTemperature(americano);
+
+    renderWritingTime(domById.page1Time);
+})
+
+// 渲染亂數在咖啡 重量 和 溫度
 function renderWeightTemperature(coffee) {
     const weight = coffee.getElementsByClassName("page-1-coffee-value-weight")[0],
         temperature = coffee.getElementsByClassName("page-1-coffee-value-temperature")[0];
-
-    console.log(weight);
-    console.log(temperature);
-
-    console.log(weight.innerHTML);
 
     weight.innerHTML = randomTwoTemperature(375, 12);
 
     temperature.innerHTML = randomTwoTemperature(65, 5);
 }
 
+// 今天日期
+function renderWritingToday(dom) {
+    const writingToday = dom.getElementsByClassName("writing-today")[0];
+
+    writingToday.innerHTML = today.getDate();
+}
+
+renderWritingToday(domById.page1Date);
+
+// 渲染隨機時間
+function renderWritingTime(dom) {
+    const writingTime = dom.getElementsByClassName("writing-time")[0];
+
+    console.log(writingTime);
+
+    writingTime.innerHTML = generateRandomTime();
+}
+
+// 產生隨機時間
+function generateRandomTime() {
+    let time,
+        randomZeroToSix = randomNumber(3, 3)[0];
+
+    if (randomZeroToSix === 6) {
+        time = "08:00"
+    } else {
+        time = "07:" + randomZeroToSix + "0"
+    }
+
+    console.log(time);
+
+    return time;
+}
+
 // 輸入基準、誤差、數量，輸出數量個的誤差值
-function randomTemperature(ideal, tolerance, number = 1) {
+function randomNumber(ideal, tolerance, number = 1) {
     const max = ideal + tolerance,
         min = ideal - tolerance;
 
@@ -60,12 +98,12 @@ function randomTemperature(ideal, tolerance, number = 1) {
 
 // 產生一個溫度亂數
 function randomOneTemperature(ideal, tolerance) {
-    return randomTemperature(ideal, tolerance, 1);
+    return randomNumber(ideal, tolerance, 1);
 }
 
 // 產生兩個溫度亂數
 function randomTwoTemperature(ideal, tolerance) {
-    return randomTemperature(ideal, tolerance, 2);
+    return randomNumber(ideal, tolerance, 2);
 }
 
 
